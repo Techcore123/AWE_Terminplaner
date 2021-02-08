@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminplaner", "Terminplaner\Terminplaner.csproj", "{7BB82881-6285-4F2A-81D3-BE396A54A29E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BB82881-6285-4F2A-81D3-BE396A54A29E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BB82881-6285-4F2A-81D3-BE396A54A29E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BB82881-6285-4F2A-81D3-BE396A54A29E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BB82881-6285-4F2A-81D3-BE396A54A29E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5EFCC519-2B76-4893-B937-66D39E51A706}
+	EndGlobalSection
+EndGlobal
