@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Terminplaner"
         mc:Ignorable="d"
-        Title="ContactWindow" Height="450" Width="800">
+        Title="Kontakte" Height="450" Width="800">
     <Grid HorizontalAlignment="Left" Height="430" Margin="10,10,0,-21" VerticalAlignment="Top" Width="780" >
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="94" FontSize="18"><Run Text="Kontaktliste"/><LineBreak/><Run/></TextBlock>
         <Label Content="Name&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,132,0,0" VerticalAlignment="Top" Width="94" Height="29"/>
@@ -14,12 +14,12 @@
         <TextBox HorizontalAlignment="Left" Height="29" Margin="99,184,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159"/>
         <Label Content="Adresse&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,233,0,0" VerticalAlignment="Top" Width="99" Height="25"/>
         <TextBox HorizontalAlignment="Left" Height="135" Margin="99,233,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159"/>
-        <Label Content="Telefon&#xA;" HorizontalAlignment="Left" Margin="503,132,0,0" VerticalAlignment="Top" Width="86" Height="29"/>
-        <TextBox HorizontalAlignment="Left" Height="29" Margin="603,132,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159"/>
-        <Label Content="E-Mail&#xA;" HorizontalAlignment="Left" Margin="503,184,0,0" VerticalAlignment="Top" Width="86" Height="29" RenderTransformOrigin="0.563,0.404"/>
-        <TextBox HorizontalAlignment="Left" Height="29" Margin="603,184,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159"/>
-        <Label Content="Bild&#xA;" HorizontalAlignment="Left" Margin="503,241,0,0" VerticalAlignment="Top" Width="86" Height="35"/>
-        <Image HorizontalAlignment="Left" Height="127" Margin="603,241,0,0" VerticalAlignment="Top" Width="132" Source="TestBild.png"/>
+        <Label Content="Telefon&#xA;" HorizontalAlignment="Left" Margin="485,132,0,0" VerticalAlignment="Top" Width="86" Height="29"/>
+        <TextBox HorizontalAlignment="Left" Height="29" Margin="585,132,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159"/>
+        <Label Content="E-Mail&#xA;" HorizontalAlignment="Left" Margin="485,184,0,0" VerticalAlignment="Top" Width="86" Height="29" RenderTransformOrigin="0.563,0.404"/>
+        <TextBox HorizontalAlignment="Left" Height="29" Margin="585,184,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159"/>
+        <Label Content="Bild&#xA;" HorizontalAlignment="Left" Margin="485,241,0,0" VerticalAlignment="Top" Width="86" Height="35"/>
+        <Image HorizontalAlignment="Left" Height="127" Margin="585,241,0,0" VerticalAlignment="Top" Width="132" Source="TestBild.png"/>
         <Button Content="Speichern" HorizontalAlignment="Left" Margin="303,337,0,0" VerticalAlignment="Top" Width="142" Click="Button_Click" Height="52"/>
         <DataGrid HorizontalAlignment="Left" Height="77" Margin="10,39,0,0" VerticalAlignment="Top" Width="752">
             <DataGrid.Columns>
