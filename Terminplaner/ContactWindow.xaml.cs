@@ -18,9 +18,9 @@ namespace Terminplaner
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ContactWindow : Window
     {
-        public MainWindow()
+        public ContactWindow()
         {
             InitializeComponent();
         }
