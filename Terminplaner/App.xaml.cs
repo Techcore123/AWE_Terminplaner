@@ -13,5 +13,5 @@ namespace Terminplaner
     /// </summary>
     public partial class App : Application
     {
-    }
+    } // FF xxxx Bibbedibabbedibuh
 }
