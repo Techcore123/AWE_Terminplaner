@@ -5,32 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Terminplaner"
         mc:Ignorable="d"
-        Title="Kontakte" Height="450" Width="800">
-    <Grid HorizontalAlignment="Left" Height="430" Margin="10,10,0,-21" VerticalAlignment="Top" Width="780" >
+        Title="Kontakte" Height="559.5" Width="800">
+    <Grid HorizontalAlignment="Left" Height="514" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="669*"/>
+            <ColumnDefinition Width="112*"/>
+        </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="94" FontSize="18"><Run Text="Kontaktliste"/><LineBreak/><Run/></TextBlock>
-        <Label Content="Name&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,132,0,0" VerticalAlignment="Top" Width="94" Height="29"/>
-        <TextBox HorizontalAlignment="Left" Height="29" Margin="99,132,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159"/>
-        <Label Content="Vorname&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,185,0,0" VerticalAlignment="Top" Width="99" Height="28"/>
-        <TextBox HorizontalAlignment="Left" Height="29" Margin="99,184,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159"/>
-        <Label Content="Adresse&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,233,0,0" VerticalAlignment="Top" Width="99" Height="25"/>
-        <TextBox HorizontalAlignment="Left" Height="135" Margin="99,233,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159"/>
-        <Label Content="Telefon&#xA;" HorizontalAlignment="Left" Margin="485,132,0,0" VerticalAlignment="Top" Width="86" Height="29"/>
-        <TextBox HorizontalAlignment="Left" Height="29" Margin="585,132,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159"/>
-        <Label Content="E-Mail&#xA;" HorizontalAlignment="Left" Margin="485,184,0,0" VerticalAlignment="Top" Width="86" Height="29" RenderTransformOrigin="0.563,0.404"/>
-        <TextBox HorizontalAlignment="Left" Height="29" Margin="585,184,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159"/>
-        <Label Content="Bild&#xA;" HorizontalAlignment="Left" Margin="485,241,0,0" VerticalAlignment="Top" Width="86" Height="35"/>
-        <Image HorizontalAlignment="Left" Height="127" Margin="585,241,0,0" VerticalAlignment="Top" Width="132" Source="TestBild.png"/>
-        <Button Content="Speichern" HorizontalAlignment="Left" Margin="303,337,0,0" VerticalAlignment="Top" Width="142" Click="Button_Click" Height="52"/>
-        <DataGrid HorizontalAlignment="Left" Height="77" Margin="10,39,0,0" VerticalAlignment="Top" Width="752">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Name" CanUserResize="False" Width="100"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Vorname" CanUserResize="False" Width="100"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Adresse" CanUserResize="False" Width="350"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Telefon" CanUserResize="False" Width="100"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="E-Mail" CanUserResize="False" Width="100"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Label Content="Name&#xD;&#xA;" HorizontalAlignment="Left" Margin="22,234,0,0" VerticalAlignment="Top" Width="94" Height="29"/>
+        <TextBox Name="tb_name" HorizontalAlignment="Left" Height="29" Margin="122,234,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158"/>
+        <Label Content="Vorname&#xD;&#xA;" HorizontalAlignment="Left" Margin="22,287,0,0" VerticalAlignment="Top" Width="100" Height="28"/>
+        <TextBox Name="tb_vorname" HorizontalAlignment="Left" Height="29" Margin="122,286,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158"/>
+        <Label Content="Adresse&#xD;&#xA;" HorizontalAlignment="Left" Margin="22,335,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
+        <TextBox Name="tb_adresse" HorizontalAlignment="Left" Height="135" Margin="122,335,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158"/>
+        <Label Content="Telefon&#xA;" HorizontalAlignment="Left" Margin="508,234,0,0" VerticalAlignment="Top" Width="86" Height="29"/>
+        <TextBox Name="tb_telefon" HorizontalAlignment="Left" Height="29" Margin="608,234,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158" Grid.ColumnSpan="2"/>
+        <Label Content="E-Mail&#xA;" HorizontalAlignment="Left" Margin="508,286,0,0" VerticalAlignment="Top" Width="86" Height="29" RenderTransformOrigin="0.563,0.404"/>
+        <TextBox Name="tb_email" HorizontalAlignment="Left" Height="29" Margin="608,286,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158" Grid.ColumnSpan="2"/>
+        <Label Content="Bild&#xA;" HorizontalAlignment="Left" Margin="508,343,0,0" VerticalAlignment="Top" Width="86" Height="35"/>
+        <Image Name="p_bild" HorizontalAlignment="Left" Height="127" Margin="608,343,0,0" VerticalAlignment="Top" Width="132" Source="TestBild.png" Grid.ColumnSpan="2"/>
+        <Button Content="Speichern" HorizontalAlignment="Left" Margin="326,439,0,0" VerticalAlignment="Top" Width="142" Height="52"/>
+        <DataGrid Name="DataGrid" HorizontalAlignment="Left" Height="190" Margin="10,39,0,0" VerticalAlignment="Top" Width="752" IsSynchronizedWithCurrentItem="True" Grid.ColumnSpan="2" GridLinesVisibility="None" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" />
     </Grid>
-
-
 </Window>

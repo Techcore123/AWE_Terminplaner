@@ -20,9 +20,51 @@ namespace Terminplaner
     /// </summary>
     public partial class ContactWindow : Window
     {
+        private List<Contact> MockDatabase;
         public ContactWindow()
         {
             InitializeComponent();
+            FillMockDatabase();
+            DataGrid.ItemsSource = FillMockDatabase();
         }
+        public List<Contact> FillMockDatabase() 
+        {
+            List<Contact> contacts = new List<Contact>();
+            contacts.Add(new Contact()
+            {
+                Name = "Hansen",
+                Vorname = "Frank",
+                Adresse = "Baumallee 11, 40724 Hilden",
+                Telefon = "02103-1828228",
+                Email = "Hansen@Hansen.de"
+            });
+            contacts.Add(new Contact()
+            {
+                Name = "Knudsen",
+                Vorname = "Karl",
+                Adresse = "Uferweg 12, 40724 Hilden",
+                Telefon = "02103-383838",
+                Email = "Karl@Knudsen.de"
+            });
+            return contacts;
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Contact selected = (Contact)DataGrid.SelectedItem;
+            tb_name.Text = selected.Name;
+            tb_vorname.Text = selected.Vorname;
+            tb_adresse.Text = selected.Adresse;
+            tb_telefon.Text = selected.Telefon;
+            tb_email.Text = selected.Email;
+        }
+    }
+    public class Contact
+    {
+        public string Name { get; set; }
+        public string Vorname { get; set; }
+        public string Adresse { get; set; }
+        public string Telefon { get; set; }
+        public string Email { get; set; }
     }
 }
