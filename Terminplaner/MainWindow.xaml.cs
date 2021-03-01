@@ -24,5 +24,24 @@ namespace Terminplaner
         {
             InitializeComponent();
         }
+
+        private void b_contact_Click(object sender, RoutedEventArgs e)
+        {
+            ContactWindow c_window = new ContactWindow();
+            c_window.Show();
+            this.Close();
+        }
+
+        private void b_calendar_Click(object sender, RoutedEventArgs e)
+        {
+            //CalendarWindow c_window = new CalendarWindow();
+            //c_window.Show();
+            //this.Close();
+        }
+
+        private void b_exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

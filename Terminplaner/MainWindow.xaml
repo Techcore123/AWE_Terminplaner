@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Terminplaner"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="180.041" Width="182.387">
     <Grid>
-        
+        <Button Name="b_contact" Content="Kontaktdaten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="35" Click="b_contact_Click"/>
+        <Button Name="b_calendar" Content="Terminansicht" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="146" Height="35" Click="b_calendar_Click"/>
+        <Button Name="b_exit" Content="Ende" HorizontalAlignment="Left" Margin="88,103,0,0" VerticalAlignment="Top" Width="68" Height="28" Click="b_exit_Click"/>
+
     </Grid>
 </Window>
