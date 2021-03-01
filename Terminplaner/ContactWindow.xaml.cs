@@ -59,19 +59,28 @@ namespace Terminplaner
             tb_email.Text    = selected.Email;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void b_save_Click(object sender, RoutedEventArgs e)
         {
             Contact selected = (Contact)DataGrid.SelectedItem;
-            selected.Name = tb_name.Text;
+            selected.Name    = tb_name.Text;
             selected.Vorname = tb_vorname.Text;
             selected.Adresse = tb_adresse.Text;
             selected.Telefon = tb_telefon.Text;
-            selected.Email = tb_email.Text;
+            selected.Email   = tb_email.Text;
+            UpdateGrid();
+        }
+
+        private void b_add_Click(object sender, RoutedEventArgs e)
+        {
+            List<Contact> contacts = (List<Contact>)DataGrid.ItemsSource;
+            contacts.Add(new Contact()
+            {
+                Name = tb_name.Text,
+                Vorname = tb_vorname.Text,
+                Adresse = tb_adresse.Text,
+                Telefon = tb_telefon.Text,
+                Email = tb_email.Text
+            });
             UpdateGrid();
         }
 
@@ -79,6 +88,7 @@ namespace Terminplaner
         {
             DataGrid.Items.Refresh();
         }
+
     }
     public class Contact
     {

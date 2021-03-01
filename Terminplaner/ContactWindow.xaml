@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Terminplaner"
         mc:Ignorable="d"
-        Title="Kontakte" Height="559.5" Width="800">
-    <Grid HorizontalAlignment="Left" Height="514" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" >
+        Title="Kontakte" Height="475.5" Width="800">
+    <Grid HorizontalAlignment="Left" Margin="10,10,0,5" Width="780" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="669*"/>
             <ColumnDefinition Width="112*"/>
@@ -14,18 +14,18 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="94" FontSize="18"><Run Text="Kontaktliste"/><LineBreak/><Run/></TextBlock>
         <Label Content="Name&#xD;&#xA;" HorizontalAlignment="Left" Margin="22,234,0,0" VerticalAlignment="Top" Width="94" Height="29"/>
         <TextBox Name="tb_name" HorizontalAlignment="Left" Height="29" Margin="122,234,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158"/>
-        <Label Content="Vorname&#xD;&#xA;" HorizontalAlignment="Left" Margin="22,287,0,0" VerticalAlignment="Top" Width="100" Height="28"/>
-        <TextBox Name="tb_vorname" HorizontalAlignment="Left" Height="29" Margin="122,286,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158"/>
-        <Label Content="Adresse&#xD;&#xA;" HorizontalAlignment="Left" Margin="22,335,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
-        <TextBox Name="tb_adresse" HorizontalAlignment="Left" Height="135" Margin="122,335,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158"/>
+        <Label Content="Vorname&#xD;&#xA;" HorizontalAlignment="Left" Margin="22,268,0,0" VerticalAlignment="Top" Width="100" Height="28"/>
+        <TextBox Name="tb_vorname" HorizontalAlignment="Left" Height="29" Margin="122,268,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158"/>
+        <Label Content="Adresse&#xD;&#xA;" HorizontalAlignment="Left" Margin="17,302,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
+        <TextBox Name="tb_adresse" HorizontalAlignment="Left" Height="52" Margin="122,302,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158"/>
         <Label Content="Telefon&#xA;" HorizontalAlignment="Left" Margin="508,234,0,0" VerticalAlignment="Top" Width="86" Height="29"/>
         <TextBox Name="tb_telefon" HorizontalAlignment="Left" Height="29" Margin="608,234,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158" Grid.ColumnSpan="2"/>
-        <Label Content="E-Mail&#xA;" HorizontalAlignment="Left" Margin="508,286,0,0" VerticalAlignment="Top" Width="86" Height="29" RenderTransformOrigin="0.563,0.404"/>
-        <TextBox Name="tb_email" HorizontalAlignment="Left" Height="29" Margin="608,286,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158" Grid.ColumnSpan="2"/>
-        <Label Content="Bild&#xA;" HorizontalAlignment="Left" Margin="508,343,0,0" VerticalAlignment="Top" Width="86" Height="35"/>
-        <Image Name="p_bild" HorizontalAlignment="Left" Height="127" Margin="608,343,0,0" VerticalAlignment="Top" Width="132" Source="TestBild.png" Grid.ColumnSpan="2"/>
-        <Button Name="b_add" Content="Hinzufügen" HorizontalAlignment="Left" Margin="285,439,0,0" VerticalAlignment="Top" Width="101" Height="52" Click="Button_Click"/>
+        <Label Content="E-Mail&#xA;" HorizontalAlignment="Left" Margin="508,268,0,0" VerticalAlignment="Top" Width="86" Height="29" RenderTransformOrigin="0.563,0.404"/>
+        <TextBox Name="tb_email" HorizontalAlignment="Left" Height="29" Margin="608,268,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158" Grid.ColumnSpan="2"/>
+        <Label Content="Bild&#xA;" HorizontalAlignment="Left" Margin="517,320,0,0" VerticalAlignment="Top" Width="86" Height="35"/>
+        <Image Name="p_bild" HorizontalAlignment="Left" Height="112" Margin="608,320,0,0" VerticalAlignment="Top" Width="111" Source="TestBild.png" Grid.ColumnSpan="2"/>
+        <Button Name="b_add" Content="Hinzufügen" HorizontalAlignment="Left" Margin="230,368,0,0" VerticalAlignment="Top" Width="101" Height="52" Click="b_add_Click"/>
         <DataGrid Name="DataGrid" HorizontalAlignment="Left" Height="190" Margin="10,39,0,0" VerticalAlignment="Top" Width="752" IsSynchronizedWithCurrentItem="True" Grid.ColumnSpan="2" GridLinesVisibility="None" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" />
-        <Button Name="b_save" Content="Speichern" HorizontalAlignment="Left" Margin="391,439,0,0" VerticalAlignment="Top" Width="101" Height="52" Click="b_save_Click"/>
+        <Button Name="b_save" Content="Speichern" HorizontalAlignment="Left" Margin="336,368,0,0" VerticalAlignment="Top" Width="101" Height="52" Click="b_save_Click"/>
     </Grid>
 </Window>
