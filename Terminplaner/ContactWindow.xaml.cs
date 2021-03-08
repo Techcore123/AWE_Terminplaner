@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -13,18 +14,14 @@ namespace Terminplaner
     /// </summary>
     public partial class ContactWindow : Window
     {
-        private List<Contact> MockDatabase;
-        private int ID;
         private OleDbConnection Databank;
-        private bool recentlyCleared = false;
+        private bool recentlyCleared  = false;
+        private string DefaultPicture = "pack://application:,,,/Pictures/TestBild.png";
         public ContactWindow()
         {
             InitializeComponent();
-            this.ID = 0;
             Databank = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Terminplaner.mdb");
-            //FillMockDatabase();
-            //DataGrid.ItemsSource = FillMockDatabase();
-            DataGrid.ItemsSource = ReadDatabank();
+            UpdateGrid();
         }
 
         public List<Contact> ReadDatabank()
@@ -38,22 +35,13 @@ namespace Terminplaner
             OleDbDataReader Reader = Command.ExecuteReader();
             while (Reader.Read())
             {
-                string Bild = "E:\\Ausbildung\\OnlineSchule\\AWE Project\\AWE Project\\Terminplaner\\Pictures\\TestBild.png";
+                string Bild = DefaultPicture;
                 if (!Reader.IsDBNull(6))
                 {
                     Bild = Reader.GetString(6);    // There may be no picture linked
                 }
-                
-                contacts.Add(new Contact()
-                {
-                    id      = Reader.GetInt32(0),
-                    Name    = Reader.GetString(1),
-                    Vorname = Reader.GetString(2),
-                    Adresse = Reader.GetString(3),
-                    Telefon = Reader.GetString(4),
-                    Email   = Reader.GetString(5),
-                    Bild    = Bild
-                });
+
+                contacts.Add(new Contact(Reader.GetInt32(0), Reader.GetString(1), Reader.GetString(2), Reader.GetString(3), Reader.GetString(4), Reader.GetString(5), Bild));
             }
             Databank.Close();
             return contacts;
@@ -63,14 +51,14 @@ namespace Terminplaner
         {
             Databank.Open();
             OleDbCommand Command = Databank.CreateCommand();
-            Command.Connection = Databank;
-            string CMD = "INSERT INTO Kontakt " +
-                         "VALUES (" + contact.Name    + ", " +
-                                      contact.Vorname + ", " +
-                                      contact.Adresse + ", " +
-                                      contact.Telefon + ", " +
-                                      contact.Email   + ", " +
-                                      contact.Bild    + ");";
+            Command.Connection   = Databank;
+            Command.CommandText  = "INSERT INTO Kontakt(Nachname, Vorname, Adresse, Telefon, EMail, Bild) " +
+                                   "VALUES ('" + contact.Name    + "', '" +
+                                                 contact.Vorname + "', '" +
+                                                 contact.Adresse + "', '" +
+                                                 contact.Telefon + "', '" +
+                                                 contact.Email   + "', '" +
+                                                 contact.Bild    + "');";
             Command.ExecuteNonQuery();
             Databank.Close();
             return;
@@ -88,41 +76,18 @@ namespace Terminplaner
                 OleDbCommand Command = Databank.CreateCommand();
                 Command.Connection   = Databank;
                 Contact selected     = (Contact)DataGrid.SelectedItem;
-                string CMD           = "UPDATE Kontakt " +
-                                       "SET Nachname=" + contact.Name    + ", " +
-                                            "Vorname=" + contact.Vorname + ", " +
-                                            "Adresse=" + contact.Adresse + ", " +
-                                            "Telefon=" + contact.Telefon + ", " +
-                                            "EMail=" + contact.Email     + ", " +
-                                            "Bild=" + contact.Bild       + " " +
-                                            "WHERE ID=" + contact.id     + ";";
+                Command.CommandText  = "UPDATE Kontakt " +
+                                       "SET Nachname='" + contact.Name    + "', " +
+                                            "Vorname='" + contact.Vorname + "', " +
+                                            "Adresse='" + contact.Adresse + "', " +
+                                            "Telefon='" + contact.Telefon + "', " +
+                                            "EMail='"    + contact.Email   + "', " +
+                                            "Bild='" + contact.Bild    + "' " +
+                                            "WHERE ID=" + contact.id      + ";";
                 Command.ExecuteNonQuery();
                 Databank.Close();
             }
             return;
-        }
-        public List<Contact> FillMockDatabase() 
-        {
-            List<Contact> contacts = new List<Contact>();
-            contacts.Add(new Contact()
-            {
-                Name    = "Hansen",
-                Vorname = "Frank",
-                Adresse = "Baumallee 11, 40724 Hilden",
-                Telefon = "02103-1828228",
-                Email   = "Hansen@Hansen.de",
-                Bild    = "E:\\Ausbildung\\OnlineSchule\\AWE Project\\AWE Project\\Terminplaner\\Pictures\\TestBildRed.png"
-            });
-            contacts.Add(new Contact()
-            {
-                Name    = "Knudsen",
-                Vorname = "Karl",
-                Adresse = "Uferweg 12, 40724 Hilden",
-                Telefon = "02103-383838",
-                Email   = "Karl@Knudsen.de",
-                Bild    = "E:\\Ausbildung\\OnlineSchule\\AWE Project\\AWE Project\\Terminplaner\\Pictures\\TestBildGreen.png"
-            });
-            return contacts;
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -144,19 +109,14 @@ namespace Terminplaner
         private void b_save_Click(object sender, RoutedEventArgs e)
         {
             Contact selected = (Contact)DataGrid.SelectedItem;
-            selected.Name    = tb_name.Text;
-            selected.Vorname = tb_vorname.Text;
-            selected.Adresse = tb_adresse.Text;
-            selected.Telefon = tb_telefon.Text;
-            selected.Email   = tb_email.Text;
-            selected.Bild    = p_bild.Source.ToString();
+            Contact contact = new Contact(selected.id, tb_name.Text, tb_vorname.Text, tb_adresse.Text, tb_telefon.Text, tb_email.Text, p_bild.Source.ToString());
+            EditDatabank(contact);
             UpdateGrid();
         }
 
         private void b_add_Click(object sender, RoutedEventArgs e)
         {
-            List<Contact> contacts = (List<Contact>)DataGrid.ItemsSource;
-            contacts.Add(new Contact()
+            Contact contact = new Contact(0, tb_name.Text, tb_vorname.Text, tb_adresse.Text, tb_telefon.Text, tb_email.Text, p_bild.Source.ToString())
             {
                 Name    = tb_name.Text,
                 Vorname = tb_vorname.Text,
@@ -164,19 +124,22 @@ namespace Terminplaner
                 Telefon = tb_telefon.Text,
                 Email   = tb_email.Text,
                 Bild    = p_bild.Source.ToString()
-            });
+            };
+            AddToDatabank(contact);
             UpdateGrid();
         }
 
-        private void UpdateGrid()
+        public  void UpdateGrid()
         {
+            recentlyCleared = false;
+            DataGrid.SelectedIndex = 0;
+            DataGrid.ItemsSource = ReadDatabank();
             DataGrid.Items.Refresh();
-        }
-
-        private int getNextID()
-        {
-            this.ID++;
-            return this.ID;
+            if (DataGrid.Columns.Count > 5)
+            {
+                DataGrid.Columns[0].Visibility = Visibility.Hidden;  // Hide id
+                DataGrid.Columns[6].Visibility = Visibility.Hidden;  // Hide image path
+            }
         }
 
         private void b_browse_Click(object sender, RoutedEventArgs e)
@@ -215,7 +178,7 @@ namespace Terminplaner
             tb_email.Clear();
             BitmapImage image = new BitmapImage();
             image.BeginInit();
-            image.UriSource = new Uri("E:\\Ausbildung\\OnlineSchule\\AWE Project\\AWE Project\\Terminplaner\\Pictures\\TestBild.png");
+            image.UriSource = new Uri(DefaultPicture);
             image.EndInit();
             p_bild.Source = image;
         }
@@ -229,5 +192,15 @@ namespace Terminplaner
         public string Telefon { get; set; }
         public string Email   { get; set; }
         public string Bild    { get; set; }
+        public Contact(int id, string name, string vorname, string adresse, string telefon, string email, string bild)
+        {
+            this.id      = id;
+            this.Name    = name;
+            this.Vorname = vorname;
+            this.Adresse = adresse;
+            this.Telefon = telefon;
+            this.Email   = email;
+            this.Bild    = bild;
+        }
     }
 }

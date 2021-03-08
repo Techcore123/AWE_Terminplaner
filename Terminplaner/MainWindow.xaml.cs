@@ -29,6 +29,7 @@ namespace Terminplaner
         {
             ContactWindow c_window = new ContactWindow();
             c_window.Show();
+            c_window.UpdateGrid();
             this.Close();
         }
 
