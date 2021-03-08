@@ -59,7 +59,7 @@ namespace Terminplaner {
       //
       // Get relevant data from Database
       //
-      using (ConTermine = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\\temp\\Terminplaner.mdb")) {
+      using (ConTermine = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Terminplaner.mdb")) {
         ConTermine.Open();
         Command = ConTermine.CreateCommand();
         Command.Connection = ConTermine;
