@@ -70,7 +70,7 @@ namespace Terminplaner
                                                  contact.Telefon + "', '" +
                                                  contact.Email   + "', '" +
                                                  contact.Bild    + "');";
-            int i = Command.ExecuteNonQuery();
+            Command.ExecuteNonQuery();
             Databank.Close();
             return;
         }
@@ -87,42 +87,18 @@ namespace Terminplaner
                 OleDbCommand Command = Databank.CreateCommand();
                 Command.Connection   = Databank;
                 Contact selected     = (Contact)DataGrid.SelectedItem;
-                string CMD           = "UPDATE Kontakt " +
-                                       "SET Nachname=" + contact.Name    + ", " +
-                                            "Vorname=" + contact.Vorname + ", " +
-                                            "Adresse=" + contact.Adresse + ", " +
-                                            "Telefon=" + contact.Telefon + ", " +
-                                            "EMail=" + contact.Email     + ", " +
-                                            "Bild=" + contact.Bild       + " " +
-                                            "WHERE ID=" + contact.id     + ";";
+                Command.CommandText  = "UPDATE Kontakt " +
+                                       "SET Nachname='" + contact.Name    + "', " +
+                                            "Vorname='" + contact.Vorname + "', " +
+                                            "Adresse='" + contact.Adresse + "', " +
+                                            "Telefon='" + contact.Telefon + "', " +
+                                            "EMail='"    + contact.Email   + "', " +
+                                            "Bild='" + contact.Bild    + "' " +
+                                            "WHERE ID=" + contact.id      + ";";
                 Command.ExecuteNonQuery();
                 Databank.Close();
             }
             return;
-        }
-        
-        public List<Contact> FillMockDatabase() 
-        {
-            List<Contact> contacts = new List<Contact>();
-            contacts.Add(new Contact()
-            {
-                Name    = "Hansen",
-                Vorname = "Frank",
-                Adresse = "Baumallee 11, 40724 Hilden",
-                Telefon = "02103-1828228",
-                Email   = "Hansen@Hansen.de",
-                Bild    = "E:\\Ausbildung\\OnlineSchule\\AWE Project\\AWE Project\\Terminplaner\\Pictures\\TestBildRed.png"
-            });
-            contacts.Add(new Contact()
-            {
-                Name    = "Knudsen",
-                Vorname = "Karl",
-                Adresse = "Uferweg 12, 40724 Hilden",
-                Telefon = "02103-383838",
-                Email   = "Karl@Knudsen.de",
-                Bild    = "E:\\Ausbildung\\OnlineSchule\\AWE Project\\AWE Project\\Terminplaner\\Pictures\\TestBildGreen.png"
-            });
-            return contacts;
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -144,18 +120,22 @@ namespace Terminplaner
         private void b_save_Click(object sender, RoutedEventArgs e)
         {
             Contact selected = (Contact)DataGrid.SelectedItem;
-            selected.Name    = tb_name.Text;
-            selected.Vorname = tb_vorname.Text;
-            selected.Adresse = tb_adresse.Text;
-            selected.Telefon = tb_telefon.Text;
-            selected.Email   = tb_email.Text;
-            selected.Bild    = p_bild.Source.ToString();
+            Contact contact = new Contact()
+            {
+                id      = selected.id,
+                Name    = tb_name.Text,
+                Vorname = tb_vorname.Text,
+                Adresse = tb_adresse.Text,
+                Telefon = tb_telefon.Text,
+                Email   = tb_email.Text,
+                Bild    = p_bild.Source.ToString()
+            };
+            EditDatabank(contact);
             UpdateGrid();
         }
 
         private void b_add_Click(object sender, RoutedEventArgs e)
         {
-            List<Contact> contacts = (List<Contact>)DataGrid.ItemsSource;
             Contact contact = new Contact()
             {
                 Name    = tb_name.Text,
@@ -171,6 +151,8 @@ namespace Terminplaner
 
         private void UpdateGrid()
         {
+            recentlyCleared = false;
+            DataGrid.SelectedIndex = 0;
             DataGrid.ItemsSource = ReadDatabank();
             DataGrid.Items.Refresh();
         }
