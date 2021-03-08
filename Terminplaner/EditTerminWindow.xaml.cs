@@ -34,7 +34,7 @@ namespace Terminplaner {
     private void BtnOK_Click(object sender, RoutedEventArgs e) {
       this.TempTermin.Terminname = this.TBName.Text;
       this.TempTermin.Date       = this.DPDate.SelectedDate.Value;
-      this.TempTermin.Time       = DateTime.Parse(this.TBTime.Text);
+      //this.TempTermin.Time       = DateTime.Parse(this.TBTime.Text); // FF xxx Does not work yet.
       this.TempTermin.KontaktID  = Convert.ToInt32(this.TBKtkt.Text);
       this.TempTermin.Info       = this.TBInfo.Text;
       this.DialogResult = true;
