@@ -109,9 +109,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="TestBild.png" />
+    <Resource Include="Pictures\TestBild.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Pictures\TestBildGreen.png" />
+    <Resource Include="Pictures\TestBildRed.png" />
     <Content Include="Terminplaner.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
