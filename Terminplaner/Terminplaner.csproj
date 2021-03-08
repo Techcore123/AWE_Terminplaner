@@ -55,12 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EditTerminWindow.xaml.cs">
+      <DependentUpon>EditTerminWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Terminansicht.xaml.cs">
       <DependentUpon>Terminansicht.xaml</DependentUpon>
     </Compile>
     <Page Include="ContactWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditTerminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
