@@ -32,7 +32,8 @@ namespace Terminplaner
             Databank.Open();
             OleDbCommand Command = Databank.CreateCommand();
             Command.Connection = Databank;
-            Command.CommandText = "SELECT * From Kontakt";
+            Command.CommandText = "SELECT * " +
+                                  "From Kontakt";
             OleDbDataReader Reader = Command.ExecuteReader();
             while (Reader.Read())
             {
@@ -53,9 +54,43 @@ namespace Terminplaner
                     Bild    = Bild
                 });
             }
+            Databank.Close();
             return contacts;
         }
 
+        public void AddToDatabank(Contact contact)
+        {
+            Databank.Open();
+            OleDbCommand Command = Databank.CreateCommand();
+            Command.Connection = Databank;
+            string CMD = "INSERT INTO Kontakt " +
+                         "VALUES (" + tb_name.Text + ", " +
+                                      tb_vorname.Text + ", " +
+                                      tb_adresse.Text + ", " +
+                                      tb_telefon.Text + ", " +
+                                      tb_email.Text + ", " +
+                                      p_bild.Source.ToString() + ");";
+            Command.ExecuteNonQuery();
+            Databank.Close();
+            return;
+        }
+
+        public void EditDatabank(Contact contact)
+        {
+            Databank.Open();
+            OleDbCommand Command = Databank.CreateCommand();
+            Command.Connection = Databank;
+            Contact selected = (Contact)DataGrid.SelectedItem;
+            string CMD = "UPDATE Kontakt " +
+                         "SET Nachname="   + tb_name.Text             + ", " +
+                              "Vorname="   + tb_vorname.Text          + ", " +
+                              "Adresse="   + tb_adresse.Text          + ", " +
+                              "Telefon="   + tb_telefon.Text          + ", " +
+                              "EMail="     + tb_email.Text            + ", " +
+                              "Bild="      + p_bild.Source.ToString() + " " + 
+                              "WHERE ID="  + selected.id              + ";";
+            return;
+        }
         public List<Contact> FillMockDatabase() 
         {
             List<Contact> contacts = new List<Contact>();
