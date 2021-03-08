@@ -15,7 +15,7 @@ namespace Terminplaner
     public partial class ContactWindow : Window
     {
         private OleDbConnection Databank;
-        private bool recentlyCleared = false;
+        private bool recentlyCleared  = false;
         private string DefaultPicture = "pack://application:,,,/Pictures/TestBild.png";
         public ContactWindow()
         {
