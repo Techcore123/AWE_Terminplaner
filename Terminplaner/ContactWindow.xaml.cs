@@ -175,12 +175,6 @@ namespace Terminplaner
             DataGrid.Items.Refresh();
         }
 
-        private int getNextID()
-        {
-            this.ID++;
-            return this.ID;
-        }
-
         private void b_browse_Click(object sender, RoutedEventArgs e)
         {
             // Open browse dialog for choosing a picture
