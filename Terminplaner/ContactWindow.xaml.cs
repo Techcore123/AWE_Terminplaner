@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -19,9 +20,8 @@ namespace Terminplaner
         public ContactWindow()
         {
             InitializeComponent();
-            this.ID = 0;
             Databank = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Terminplaner.mdb");
-            DataGrid.ItemsSource = ReadDatabank();
+            UpdateGrid();
         }
 
         public List<Contact> ReadDatabank()
@@ -40,20 +40,10 @@ namespace Terminplaner
                 {
                     Bild = Reader.GetString(6);    // There may be no picture linked
                 }
-                
-                contacts.Add(new Contact()
-                {
-                    id      = Reader.GetInt32(0),
-                    Name    = Reader.GetString(1),
-                    Vorname = Reader.GetString(2),
-                    Adresse = Reader.GetString(3),
-                    Telefon = Reader.GetString(4),
-                    Email   = Reader.GetString(5),
-                    Bild    = Bild
-                });
+
+                contacts.Add(new Contact(Reader.GetInt32(0), Reader.GetString(1), Reader.GetString(2), Reader.GetString(3), Reader.GetString(4), Reader.GetString(5), Bild));
             }
             Databank.Close();
-            DataGrid.ItemsSource = contacts;
             return contacts;
         }
 
@@ -119,23 +109,14 @@ namespace Terminplaner
         private void b_save_Click(object sender, RoutedEventArgs e)
         {
             Contact selected = (Contact)DataGrid.SelectedItem;
-            Contact contact = new Contact()
-            {
-                id      = selected.id,
-                Name    = tb_name.Text,
-                Vorname = tb_vorname.Text,
-                Adresse = tb_adresse.Text,
-                Telefon = tb_telefon.Text,
-                Email   = tb_email.Text,
-                Bild    = p_bild.Source.ToString()
-            };
+            Contact contact = new Contact(selected.id, tb_name.Text, tb_vorname.Text, tb_adresse.Text, tb_telefon.Text, tb_email.Text, p_bild.Source.ToString());
             EditDatabank(contact);
             UpdateGrid();
         }
 
         private void b_add_Click(object sender, RoutedEventArgs e)
         {
-            Contact contact = new Contact()
+            Contact contact = new Contact(0, tb_name.Text, tb_vorname.Text, tb_adresse.Text, tb_telefon.Text, tb_email.Text, p_bild.Source.ToString())
             {
                 Name    = tb_name.Text,
                 Vorname = tb_vorname.Text,
@@ -148,12 +129,17 @@ namespace Terminplaner
             UpdateGrid();
         }
 
-        private void UpdateGrid()
+        public  void UpdateGrid()
         {
             recentlyCleared = false;
             DataGrid.SelectedIndex = 0;
             DataGrid.ItemsSource = ReadDatabank();
             DataGrid.Items.Refresh();
+            if (DataGrid.Columns.Count > 5)
+            {
+                DataGrid.Columns[0].Visibility = Visibility.Hidden;  // Hide id
+                DataGrid.Columns[6].Visibility = Visibility.Hidden;  // Hide image path
+            }
         }
 
         private void b_browse_Click(object sender, RoutedEventArgs e)
@@ -206,5 +192,15 @@ namespace Terminplaner
         public string Telefon { get; set; }
         public string Email   { get; set; }
         public string Bild    { get; set; }
+        public Contact(int id, string name, string vorname, string adresse, string telefon, string email, string bild)
+        {
+            this.id      = id;
+            this.Name    = name;
+            this.Vorname = vorname;
+            this.Adresse = adresse;
+            this.Telefon = telefon;
+            this.Email   = email;
+            this.Bild    = bild;
+        }
     }
 }
