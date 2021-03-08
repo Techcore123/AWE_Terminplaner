@@ -64,12 +64,12 @@ namespace Terminplaner
             OleDbCommand Command = Databank.CreateCommand();
             Command.Connection = Databank;
             string CMD = "INSERT INTO Kontakt " +
-                         "VALUES (" + tb_name.Text + ", " +
-                                      tb_vorname.Text + ", " +
-                                      tb_adresse.Text + ", " +
-                                      tb_telefon.Text + ", " +
-                                      tb_email.Text + ", " +
-                                      p_bild.Source.ToString() + ");";
+                         "VALUES (" + contact.Name    + ", " +
+                                      contact.Vorname + ", " +
+                                      contact.Adresse + ", " +
+                                      contact.Telefon + ", " +
+                                      contact.Email   + ", " +
+                                      contact.Bild    + ");";
             Command.ExecuteNonQuery();
             Databank.Close();
             return;
@@ -82,13 +82,13 @@ namespace Terminplaner
             Command.Connection = Databank;
             Contact selected = (Contact)DataGrid.SelectedItem;
             string CMD = "UPDATE Kontakt " +
-                         "SET Nachname="   + tb_name.Text             + ", " +
-                              "Vorname="   + tb_vorname.Text          + ", " +
-                              "Adresse="   + tb_adresse.Text          + ", " +
-                              "Telefon="   + tb_telefon.Text          + ", " +
-                              "EMail="     + tb_email.Text            + ", " +
-                              "Bild="      + p_bild.Source.ToString() + " " + 
-                              "WHERE ID="  + selected.id              + ";";
+                         "SET Nachname="   + contact.Name    + ", " +
+                              "Vorname="   + contact.Vorname + ", " +
+                              "Adresse="   + contact.Adresse + ", " +
+                              "Telefon="   + contact.Telefon + ", " +
+                              "EMail="     + contact.Email   + ", " +
+                              "Bild="      + contact.Bild    + " " + 
+                              "WHERE ID="  + contact.id      + ";";
             return;
         }
         public List<Contact> FillMockDatabase() 
