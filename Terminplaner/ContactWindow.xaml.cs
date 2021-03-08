@@ -89,6 +89,8 @@ namespace Terminplaner
                               "EMail="     + contact.Email   + ", " +
                               "Bild="      + contact.Bild    + " " + 
                               "WHERE ID="  + contact.id      + ";";
+            Command.ExecuteNonQuery();
+            Databank.Close();
             return;
         }
         public List<Contact> FillMockDatabase() 
