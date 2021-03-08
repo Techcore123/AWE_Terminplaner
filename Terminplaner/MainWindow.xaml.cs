@@ -34,9 +34,9 @@ namespace Terminplaner
 
         private void b_calendar_Click(object sender, RoutedEventArgs e)
         {
-            //CalendarWindow c_window = new CalendarWindow();
-            //c_window.Show();
-            //this.Close();
+            Terminansicht Calender = new Terminansicht();
+            Calender.Show();
+            this.Close();
         }
 
         private void b_exit_Click(object sender, RoutedEventArgs e)
