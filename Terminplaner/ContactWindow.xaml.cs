@@ -22,8 +22,6 @@ namespace Terminplaner
             InitializeComponent();
             this.ID = 0;
             Databank = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Terminplaner.mdb");
-            //FillMockDatabase();
-            //DataGrid.ItemsSource = FillMockDatabase();
             DataGrid.ItemsSource = ReadDatabank();
         }
 
@@ -56,6 +54,7 @@ namespace Terminplaner
                 });
             }
             Databank.Close();
+            DataGrid.ItemsSource = contacts;
             return contacts;
         }
 
@@ -63,15 +62,15 @@ namespace Terminplaner
         {
             Databank.Open();
             OleDbCommand Command = Databank.CreateCommand();
-            Command.Connection = Databank;
-            string CMD = "INSERT INTO Kontakt " +
-                         "VALUES (" + contact.Name    + ", " +
-                                      contact.Vorname + ", " +
-                                      contact.Adresse + ", " +
-                                      contact.Telefon + ", " +
-                                      contact.Email   + ", " +
-                                      contact.Bild    + ");";
-            Command.ExecuteNonQuery();
+            Command.Connection   = Databank;
+            Command.CommandText  = "INSERT INTO Kontakt(Nachname, Vorname, Adresse, Telefon, EMail, Bild) " +
+                                   "VALUES ('" + contact.Name    + "', '" +
+                                                 contact.Vorname + "', '" +
+                                                 contact.Adresse + "', '" +
+                                                 contact.Telefon + "', '" +
+                                                 contact.Email   + "', '" +
+                                                 contact.Bild    + "');";
+            int i = Command.ExecuteNonQuery();
             Databank.Close();
             return;
         }
@@ -101,6 +100,7 @@ namespace Terminplaner
             }
             return;
         }
+        
         public List<Contact> FillMockDatabase() 
         {
             List<Contact> contacts = new List<Contact>();
@@ -156,7 +156,7 @@ namespace Terminplaner
         private void b_add_Click(object sender, RoutedEventArgs e)
         {
             List<Contact> contacts = (List<Contact>)DataGrid.ItemsSource;
-            contacts.Add(new Contact()
+            Contact contact = new Contact()
             {
                 Name    = tb_name.Text,
                 Vorname = tb_vorname.Text,
@@ -164,12 +164,14 @@ namespace Terminplaner
                 Telefon = tb_telefon.Text,
                 Email   = tb_email.Text,
                 Bild    = p_bild.Source.ToString()
-            });
+            };
+            AddToDatabank(contact);
             UpdateGrid();
         }
 
         private void UpdateGrid()
         {
+            DataGrid.ItemsSource = ReadDatabank();
             DataGrid.Items.Refresh();
         }
 
