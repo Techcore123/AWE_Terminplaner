@@ -1,0 +1,286 @@
+﻿<Window x:Class="Terminplaner.Terminansicht"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Terminplaner"
+        mc:Ignorable="d"
+        Title="Terminansicht"
+        SizeToContent="WidthAndHeight" Loaded="Window_Loaded"
+>
+  <!-- main grid -->
+  <Grid Name="GridMain" ShowGridLines="False" Height="auto" Width="auto">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto"/>
+      <ColumnDefinition Width="auto"/>
+    </Grid.ColumnDefinitions>
+    <!-- KalGrid -->
+    <DataGrid Name="DataGridTermine" AutoGenerateColumns="False" ItemsSource="{Binding}" Height="auto" Width="auto" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" IsReadOnly="True" IsHitTestVisible="False" RowHeaderWidth="0">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Uhrzeit"    Width="100" Binding="{Binding Uhrzeit}"/>
+        <DataGridTextColumn Header="Montag"     Width="100" Binding="{Binding Montag}"/>
+        <DataGridTextColumn Header="Dienstag"   Width="100" Binding="{Binding Dienstag}"/>
+        <DataGridTextColumn Header="Mittwoch"   Width="100" Binding="{Binding Mittwoch}"/>
+        <DataGridTextColumn Header="Donnerstag" Width="100" Binding="{Binding Donnerstag}"/>
+        <DataGridTextColumn Header="Freitag"    Width="100" Binding="{Binding Freitag}"/>
+        <DataGridTextColumn Header="Samstag"    Width="100" Binding="{Binding Samstag}"/>
+        <DataGridTextColumn Header="Sonntag"    Width="100" Binding="{Binding Sonntag}"/>
+      </DataGrid.Columns>
+    </DataGrid>
+    <!-- <Grid Name="GridKalender" Grid.Row="0" Grid.Column="0" ShowGridLines="True">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition MinWidth="100"/>
+        <ColumnDefinition MinWidth="100"/>
+        <ColumnDefinition MinWidth="100"/>
+        <ColumnDefinition MinWidth="100"/>
+        <ColumnDefinition MinWidth="100"/>
+        <ColumnDefinition MinWidth="100"/>
+        <ColumnDefinition MinWidth="100"/>
+        <ColumnDefinition MinWidth="100"/>
+      </Grid.ColumnDefinitions>
+      
+      <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">Zeit</Label>
+      <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">Montag</Label>
+      <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">Dienstag</Label>
+      <Label Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">Mittwoch</Label>
+      <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">Donnerstag</Label>
+      <Label Grid.Row="0" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">Freitag</Label>
+      <Label Grid.Row="0" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">Samstag</Label>
+      <Label Grid.Row="0" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">Sonntag</Label>
+
+      <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">6.00</Label>
+      <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="1" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="1" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="1" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+
+      <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">7.00</Label>
+      <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="2" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="2" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="2" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="2" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+
+      <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">8.00</Label>
+      <Label Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="3" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="3" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="3" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="3" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+
+      <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">9.00</Label>
+      <Label Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="4" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="4" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="4" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+
+      <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">10.00</Label>
+      <Label Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="5" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="5" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="5" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="5" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="5" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+
+      <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">11.00</Label>
+      <Label Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="6" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="6" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="6" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="6" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="6" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+
+      <Label Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">12.00</Label>
+      <Label Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="7" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="7" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="7" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="7" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="7" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="7" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+
+      <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">13.00</Label>
+      <Label Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="8" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="8" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="8" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="8" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="8" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="8" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+
+      <Label Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">14.00</Label>
+      <Label Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="9" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="9" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="9" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="9" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="9" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+
+      <Label Grid.Row="10" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">15.00</Label>
+      <Label Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="10" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="10" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="10" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="10" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="10" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="10" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      
+      <Label Grid.Row="11" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">16.00</Label>
+      <Label Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="11" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="11" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="11" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="11" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="11" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="11" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      
+      <Label Grid.Row="12" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">17.00</Label>
+      <Label Grid.Row="12" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="12" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="12" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="12" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="12" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="12" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="12" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      
+      <Label Grid.Row="13" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">18.00</Label>
+      <Label Grid.Row="13" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="13" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="13" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="13" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="13" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="13" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="13" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      
+      <Label Grid.Row="14" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">19.00</Label>
+      <Label Grid.Row="14" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="14" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="14" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="14" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="14" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="14" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="14" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      
+      <Label Grid.Row="15" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">20.00</Label>
+      <Label Grid.Row="15" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="15" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="15" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="15" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="15" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="15" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="15" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      
+      <Label Grid.Row="16" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">21.00</Label>
+      <Label Grid.Row="16" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="16" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="16" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="16" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="16" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="16" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="16" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+
+      <Label Grid.Row="17" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">22.00</Label>
+      <Label Grid.Row="17" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="17" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="17" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="17" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="17" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="17" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="17" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      
+      <Label Grid.Row="18" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">23.00</Label>
+      <Label Grid.Row="18" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="18" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="18" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="18" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="18" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="18" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="18" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      
+      <Label Grid.Row="19" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16">24.00</Label>
+      <Label Grid.Row="19" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="19" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="19" Grid.Column="3" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="19" Grid.Column="4" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="19" Grid.Column="5" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="19" Grid.Column="6" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+      <Label Grid.Row="19" Grid.Column="7" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center" Height="auto" FontSize="16"></Label>
+    </Grid>
+    -->
+    <!-- DetailsGrid -->
+    <Grid Name="GridDetails" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" MinWidth="300" Margin="0,0,0,0">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Label                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="auto" FontSize="18">Termindetails:</Label>
+      <Label                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="auto" FontSize="16">Datum:</Label>
+      <Label Name="LblDate"    Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="auto" FontSize="16"></Label>
+      <Label                   Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="auto" FontSize="16">Uhrzeit:</Label>
+      <Label Name="LblTime"    Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="auto" FontSize="16"></Label>
+      <Label                   Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="auto" FontSize="16">Kontakt:</Label>
+      <Label Name="LblContact" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="auto" FontSize="16"></Label>
+      <Label                   Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="auto" FontSize="16">Zusätzliche Infos:</Label>
+      <Label Name="LblAddInfo" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="auto" FontSize="16"></Label>
+    </Grid>
+    <!-- WeekSelectGrid -->
+    <Grid Name="GridWoche" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,2,0,2">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <DatePicker Name="DTPicker" Width="auto"/>
+    </Grid>
+  </Grid>
+</Window>
