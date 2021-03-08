@@ -13,10 +13,9 @@ namespace Terminplaner
     /// </summary>
     public partial class ContactWindow : Window
     {
-        private List<Contact> MockDatabase;
-        private int ID;
         private OleDbConnection Databank;
         private bool recentlyCleared = false;
+        private string DefaultPicture = "pack://application:,,,/Pictures/TestBild.png";
         public ContactWindow()
         {
             InitializeComponent();
@@ -36,7 +35,7 @@ namespace Terminplaner
             OleDbDataReader Reader = Command.ExecuteReader();
             while (Reader.Read())
             {
-                string Bild = "E:\\Ausbildung\\OnlineSchule\\AWE Project\\AWE Project\\Terminplaner\\Pictures\\TestBild.png";
+                string Bild = DefaultPicture;
                 if (!Reader.IsDBNull(6))
                 {
                     Bild = Reader.GetString(6);    // There may be no picture linked
@@ -193,7 +192,7 @@ namespace Terminplaner
             tb_email.Clear();
             BitmapImage image = new BitmapImage();
             image.BeginInit();
-            image.UriSource = new Uri("E:\\Ausbildung\\OnlineSchule\\AWE Project\\AWE Project\\Terminplaner\\Pictures\\TestBild.png");
+            image.UriSource = new Uri(DefaultPicture);
             image.EndInit();
             p_bild.Source = image;
         }

@@ -23,7 +23,7 @@
         <Label Content="E-Mail&#xA;" HorizontalAlignment="Left" Margin="508,268,0,0" VerticalAlignment="Top" Width="86" Height="29" RenderTransformOrigin="0.563,0.404"/>
         <TextBox Name="tb_email" HorizontalAlignment="Left" Height="29" Margin="608,268,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="158" Grid.ColumnSpan="2"/>
         <Label Content="Bild&#xA;" HorizontalAlignment="Left" Margin="517,320,0,0" VerticalAlignment="Top" Width="30" Height="24"/>
-        <Image Name="p_bild" HorizontalAlignment="Left" Height="112" Margin="608,320,0,0" VerticalAlignment="Top" Width="111" Grid.ColumnSpan="2" Source="TestBild.png"/>
+        <Image Name="p_bild" HorizontalAlignment="Left" Height="112" Margin="608,320,0,0" VerticalAlignment="Top" Width="111" Grid.ColumnSpan="2" Source="Pictures/TestBild.png"/>
         <Button Name="b_add" Content="Hinzufügen" HorizontalAlignment="Left" Margin="230,368,0,0" VerticalAlignment="Top" Width="101" Height="52" Click="b_add_Click"/>
         <DataGrid Name="DataGrid" HorizontalAlignment="Left" Height="190" Margin="10,39,0,0" VerticalAlignment="Top" Width="752" IsSynchronizedWithCurrentItem="True" Grid.ColumnSpan="2" GridLinesVisibility="None" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" />
         <Button Name="b_save" Content="Speichern" HorizontalAlignment="Left" Margin="336,368,0,0" VerticalAlignment="Top" Width="101" Height="52" Click="b_save_Click"/>
