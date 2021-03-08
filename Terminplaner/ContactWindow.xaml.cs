@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Data.OleDb;
 
 namespace Terminplaner
 {
@@ -14,13 +15,47 @@ namespace Terminplaner
     {
         private List<Contact> MockDatabase;
         private int ID;
+        private OleDbConnection Databank;
         public ContactWindow()
         {
             InitializeComponent();
             this.ID = 0;
-            FillMockDatabase();
-            DataGrid.ItemsSource = FillMockDatabase();
+            Databank = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Terminplaner.mdb");
+            //FillMockDatabase();
+            //DataGrid.ItemsSource = FillMockDatabase();
+            DataGrid.ItemsSource = ReadDatabank();
         }
+
+        public List<Contact> ReadDatabank()
+        {
+            List<Contact> contacts = new List<Contact>();
+            Databank.Open();
+            OleDbCommand Command = Databank.CreateCommand();
+            Command.Connection = Databank;
+            Command.CommandText = "SELECT * From Kontakt";
+            OleDbDataReader Reader = Command.ExecuteReader();
+            while (Reader.Read())
+            {
+                string Bild = "E:\\Ausbildung\\OnlineSchule\\AWE Project\\AWE Project\\Terminplaner\\Pictures\\TestBild.png";
+                if (!Reader.IsDBNull(6))
+                {
+                    Bild = Reader.GetString(6);    // There may be no picture linked
+                }
+                
+                contacts.Add(new Contact()
+                {
+                    id      = Reader.GetInt32(0),
+                    Name    = Reader.GetString(1),
+                    Vorname = Reader.GetString(2),
+                    Adresse = Reader.GetString(3),
+                    Telefon = Reader.GetString(4),
+                    Email   = Reader.GetString(5),
+                    Bild    = Bild
+                });
+            }
+            return contacts;
+        }
+
         public List<Contact> FillMockDatabase() 
         {
             List<Contact> contacts = new List<Contact>();
@@ -126,12 +161,12 @@ namespace Terminplaner
     }
     public class Contact
     {
-        public int    id { get; set; }
-        public string Name { get; set; }
+        public int    id      { get; set; }
+        public string Name    { get; set; }
         public string Vorname { get; set; }
         public string Adresse { get; set; }
         public string Telefon { get; set; }
-        public string Email { get; set; }
-        public string Bild { get; set; }
+        public string Email   { get; set; }
+        public string Bild    { get; set; }
     }
 }
