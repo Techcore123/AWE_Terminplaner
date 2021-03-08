@@ -16,6 +16,7 @@ namespace Terminplaner
         private List<Contact> MockDatabase;
         private int ID;
         private OleDbConnection Databank;
+        private bool recentlyCleared = false;
         public ContactWindow()
         {
             InitializeComponent();
@@ -77,20 +78,27 @@ namespace Terminplaner
 
         public void EditDatabank(Contact contact)
         {
-            Databank.Open();
-            OleDbCommand Command = Databank.CreateCommand();
-            Command.Connection = Databank;
-            Contact selected = (Contact)DataGrid.SelectedItem;
-            string CMD = "UPDATE Kontakt " +
-                         "SET Nachname="   + contact.Name    + ", " +
-                              "Vorname="   + contact.Vorname + ", " +
-                              "Adresse="   + contact.Adresse + ", " +
-                              "Telefon="   + contact.Telefon + ", " +
-                              "EMail="     + contact.Email   + ", " +
-                              "Bild="      + contact.Bild    + " " + 
-                              "WHERE ID="  + contact.id      + ";";
-            Command.ExecuteNonQuery();
-            Databank.Close();
+            if (recentlyCleared)
+            {
+                AddToDatabank(contact);
+            }
+            else
+            {
+                Databank.Open();
+                OleDbCommand Command = Databank.CreateCommand();
+                Command.Connection   = Databank;
+                Contact selected     = (Contact)DataGrid.SelectedItem;
+                string CMD           = "UPDATE Kontakt " +
+                                       "SET Nachname=" + contact.Name    + ", " +
+                                            "Vorname=" + contact.Vorname + ", " +
+                                            "Adresse=" + contact.Adresse + ", " +
+                                            "Telefon=" + contact.Telefon + ", " +
+                                            "EMail=" + contact.Email     + ", " +
+                                            "Bild=" + contact.Bild       + " " +
+                                            "WHERE ID=" + contact.id     + ";";
+                Command.ExecuteNonQuery();
+                Databank.Close();
+            }
             return;
         }
         public List<Contact> FillMockDatabase() 
@@ -119,6 +127,7 @@ namespace Terminplaner
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            recentlyCleared = false;
             Contact selected = (Contact)DataGrid.SelectedItem;
             tb_name.Text     = selected.Name;
             tb_vorname.Text  = selected.Vorname;
@@ -192,6 +201,21 @@ namespace Terminplaner
             BitmapImage image = new BitmapImage();
             image.BeginInit();
             image.UriSource = new Uri(filepath);
+            image.EndInit();
+            p_bild.Source = image;
+        }
+
+        private void b_clear_Click(object sender, RoutedEventArgs e)
+        {
+            recentlyCleared = true;
+            tb_name.Clear();
+            tb_vorname.Clear();
+            tb_adresse.Clear();
+            tb_telefon.Clear();
+            tb_email.Clear();
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri("E:\\Ausbildung\\OnlineSchule\\AWE Project\\AWE Project\\Terminplaner\\Pictures\\TestBild.png");
             image.EndInit();
             p_bild.Source = image;
         }

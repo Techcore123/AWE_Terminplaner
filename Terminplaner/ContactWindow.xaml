@@ -28,5 +28,6 @@
         <DataGrid Name="DataGrid" HorizontalAlignment="Left" Height="190" Margin="10,39,0,0" VerticalAlignment="Top" Width="752" IsSynchronizedWithCurrentItem="True" Grid.ColumnSpan="2" GridLinesVisibility="None" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" />
         <Button Name="b_save" Content="Speichern" HorizontalAlignment="Left" Margin="336,368,0,0" VerticalAlignment="Top" Width="101" Height="52" Click="b_save_Click"/>
         <Button Name="b_browse" Content="Browse" HorizontalAlignment="Left" Margin="547,344,0,0" VerticalAlignment="Top" Width="45" Height="25" Click="b_browse_Click"/>
+        <Button Name="b_clear" Content="Leeren" HorizontalAlignment="Left" Margin="10,400,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-1.418,1.7" Click="b_clear_Click"/>
     </Grid>
 </Window>
