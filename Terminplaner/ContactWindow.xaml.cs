@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Terminplaner
 {
@@ -21,9 +13,11 @@ namespace Terminplaner
     public partial class ContactWindow : Window
     {
         private List<Contact> MockDatabase;
+        private int ID;
         public ContactWindow()
         {
             InitializeComponent();
+            this.ID = 0;
             FillMockDatabase();
             DataGrid.ItemsSource = FillMockDatabase();
         }
@@ -36,7 +30,8 @@ namespace Terminplaner
                 Vorname = "Frank",
                 Adresse = "Baumallee 11, 40724 Hilden",
                 Telefon = "02103-1828228",
-                Email   = "Hansen@Hansen.de"
+                Email   = "Hansen@Hansen.de",
+                Bild    = "E:\\Ausbildung\\OnlineSchule\\AWE Project\\AWE Project\\Terminplaner\\Pictures\\TestBildRed.png"
             });
             contacts.Add(new Contact()
             {
@@ -44,7 +39,8 @@ namespace Terminplaner
                 Vorname = "Karl",
                 Adresse = "Uferweg 12, 40724 Hilden",
                 Telefon = "02103-383838",
-                Email   = "Karl@Knudsen.de"
+                Email   = "Karl@Knudsen.de",
+                Bild    = "E:\\Ausbildung\\OnlineSchule\\AWE Project\\AWE Project\\Terminplaner\\Pictures\\TestBildGreen.png"
             });
             return contacts;
         }
@@ -57,6 +53,11 @@ namespace Terminplaner
             tb_adresse.Text  = selected.Adresse;
             tb_telefon.Text  = selected.Telefon;
             tb_email.Text    = selected.Email;
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri(selected.Bild);
+            image.EndInit();
+            p_bild.Source = image;
         }
 
         private void b_save_Click(object sender, RoutedEventArgs e)
@@ -67,6 +68,7 @@ namespace Terminplaner
             selected.Adresse = tb_adresse.Text;
             selected.Telefon = tb_telefon.Text;
             selected.Email   = tb_email.Text;
+            selected.Bild    = p_bild.Source.ToString();
             UpdateGrid();
         }
 
@@ -75,11 +77,12 @@ namespace Terminplaner
             List<Contact> contacts = (List<Contact>)DataGrid.ItemsSource;
             contacts.Add(new Contact()
             {
-                Name = tb_name.Text,
+                Name    = tb_name.Text,
                 Vorname = tb_vorname.Text,
                 Adresse = tb_adresse.Text,
                 Telefon = tb_telefon.Text,
-                Email = tb_email.Text
+                Email   = tb_email.Text,
+                Bild    = p_bild.Source.ToString()
             });
             UpdateGrid();
         }
@@ -89,13 +92,46 @@ namespace Terminplaner
             DataGrid.Items.Refresh();
         }
 
+        private int getNextID()
+        {
+            this.ID++;
+            return this.ID;
+        }
+
+        private void b_browse_Click(object sender, RoutedEventArgs e)
+        {
+            // Open browse dialog for choosing a picture
+            Microsoft.Win32.OpenFileDialog browse = new Microsoft.Win32.OpenFileDialog();
+            browse.Filter           = "All (*.*)|*.*|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg ";
+            //browse.DefaultExt = ".png";
+            browse.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
+            Nullable<bool> result   = browse.ShowDialog();
+            if (!(result.HasValue && result.Value))
+            {
+                return;  // Cancel when input is incorrect
+            }
+            //string filename = System.IO.Path.GetFileName(browse.FileName);
+            string filepath = browse.FileName;
+            if (!File.Exists(filepath))
+            {
+                return;  // Cancel when path is not valid
+            }
+            // Read picture and refresh currently shown bitmap
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri(filepath);
+            image.EndInit();
+            p_bild.Source = image;
+        }
     }
     public class Contact
     {
+        public int    id { get; set; }
         public string Name { get; set; }
         public string Vorname { get; set; }
         public string Adresse { get; set; }
         public string Telefon { get; set; }
         public string Email { get; set; }
+        public string Bild { get; set; }
     }
 }
