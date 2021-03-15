@@ -30,14 +30,12 @@ namespace Terminplaner
             ContactWindow c_window = new ContactWindow();
             c_window.Show();
             c_window.UpdateGrid();
-            this.Close();
         }
 
         private void b_calendar_Click(object sender, RoutedEventArgs e)
         {
             Terminansicht Calender = new Terminansicht();
             Calender.Show();
-            this.Close();
         }
 
         private void b_exit_Click(object sender, RoutedEventArgs e)
