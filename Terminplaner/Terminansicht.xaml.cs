@@ -38,7 +38,6 @@ namespace Terminplaner {
       //
       DateTime StartOfWeek = DateTime.Today.AddDays(-(DateTime.Today.DayOfWeek - DayOfWeek.Monday));
       this.DTPicker.SelectedDate = StartOfWeek; // Set DTP to the beginning of current week
-      this.GetTermineInfo(StartOfWeek);
       this.TerminToList(StartOfWeek);
 
     }
@@ -101,6 +100,7 @@ namespace Terminplaner {
     *      Inserts a contact into the datatable.
     */
     private void TerminToList(DateTime SelWeek) {
+      GetTermineInfo(SelWeek);
       if (this.Termine == null) {
         return;
       }
